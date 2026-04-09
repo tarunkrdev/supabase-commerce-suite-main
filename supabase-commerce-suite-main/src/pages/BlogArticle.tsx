@@ -16,29 +16,23 @@ const BlogArticle = () => {
     queryKey: ['blog-post', slug],
     queryFn: () => fetchBlogPost(slug!),
     enabled: !!slug,
-  });
+});
 
-feature/seo-blog-edge-functions
-  const { data: products = [] } = useQuery({ 
-    queryKey: ['products'], 
-    queryFn: () => fetchProducts(true) 
+const linkedIds = post?.linked_product_ids?.filter(Boolean) ?? [];
 
-  const linkedIds = post?.linked_product_ids?.filter(Boolean) ?? [];
-
-  const { data: linkedProducts = [], isLoading: loadingProducts } = useQuery({
-    queryKey: ['linked-products', linkedIds],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('products')
-        .select('*, category:categories(*)')
-        .in('id', linkedIds)
-        .eq('visible', true);
-      if (error) throw error;
-      return (data as Product[]) || [];
-    },
-    enabled: linkedIds.length > 0,
- main
-  });
+const { data: linkedProducts = [], isLoading: loadingProducts } = useQuery({
+  queryKey: ['linked-products', linkedIds],
+  queryFn: async () => {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*, category:categories(*)')
+      .in('id', linkedIds)
+      .eq('visible', true);
+    if (error) throw error;
+    return (data as Product[]) || [];
+  },
+  enabled: linkedIds.length > 0,
+});
 
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -87,18 +81,6 @@ feature/seo-blog-edge-functions
           <div className="prose-brand mb-12" dangerouslySetInnerHTML={{ __html: post.content }} />
         )}
 
-        {post.linked_product_ids && post.linked_product_ids.length > 0 && (
-          <div className="mt-16 pt-8 border-t border-border">
-            <h2 className="text-2xl font-display font-bold mb-6">Related Products</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {products
-                .filter(p => post.linked_product_ids.includes(p.id))
-                .map(p => (
-                  <ProductCard key={p.id} product={p as any} />
-                ))}
-            </div>
-          </div>
-        )}
 
         {linkedIds.length > 0 && (
           <div className="mt-12 pt-8 border-t border-border">
