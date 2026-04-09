@@ -1,5 +1,4 @@
 import { Lock, Package, CreditCard, ShieldCheck } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const badges = [
   { icon: Lock, label: 'Discreet Packaging', desc: 'Unmarked boxes, no product info visible' },
@@ -10,22 +9,18 @@ const badges = [
 
 const TrustBadges = () => {
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-8 md:py-16">
       <div className="container">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {badges.map((badge, i) => (
-            <motion.div
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+          {badges.map((badge) => (
+            <div
               key={badge.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="glass rounded-xl p-5 text-center group hover:glow-cyan-sm transition-shadow"
+              className="glass rounded-xl p-3 md:p-5 text-center group hover:glow-cyan-sm transition-shadow"
             >
-              <badge.icon className="w-8 h-8 text-primary mx-auto mb-3 group-hover:scale-110 transition-transform" />
-              <h3 className="font-display text-sm md:text-base font-semibold mb-1">{badge.label}</h3>
-              <p className="text-xs text-muted-foreground">{badge.desc}</p>
-            </motion.div>
+              <badge.icon className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2 md:mb-3 group-hover:scale-110 transition-transform" />
+              <h3 className="font-display text-xs md:text-base font-semibold mb-0.5 md:mb-1">{badge.label}</h3>
+              <p className="text-[10px] md:text-xs text-muted-foreground leading-tight">{badge.desc}</p>
+            </div>
           ))}
         </div>
       </div>

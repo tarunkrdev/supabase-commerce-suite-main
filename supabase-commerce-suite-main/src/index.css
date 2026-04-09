@@ -79,6 +79,27 @@
   .radial-glow {
     background: radial-gradient(ellipse at center, hsl(var(--cyan) / 0.15) 0%, transparent 70%);
   }
+
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Smooth touch scrolling */
+  .scroll-smooth-touch {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* GPU acceleration for animations */
+  .gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
 }
 
 @layer components {

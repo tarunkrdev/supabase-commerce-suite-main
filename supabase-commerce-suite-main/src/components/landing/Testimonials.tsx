@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 
 const testimonials = [
@@ -21,38 +20,30 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-8 md:py-16">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10"
-        >
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-2">
+        <div className="text-center mb-6 md:mb-10">
+          <h2 className="text-2xl md:text-4xl font-display font-bold mb-2">
             What Our <span className="gradient-cyan-text">Customers</span> Say
           </h2>
-          <p className="text-muted-foreground">Real reviews from real people</p>
-        </motion.div>
+          <p className="text-sm md:text-base text-muted-foreground">Real reviews from real people</p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Horizontal scroll on mobile, grid on desktop */}
+        <div className="flex gap-4 overflow-x-auto pb-4 md:pb-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible scrollbar-none scroll-smooth-touch">
           {testimonials.map((t, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass rounded-xl p-6"
+              className="glass rounded-xl p-5 md:p-6 flex-shrink-0 w-[280px] md:w-auto"
             >
               <div className="flex gap-1 mb-3">
                 {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-primary text-primary" />
+                  <Star key={j} className="w-3.5 h-3.5 md:w-4 md:h-4 fill-primary text-primary" />
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">"{t.text}"</p>
+              <p className="text-xs md:text-sm text-muted-foreground mb-4 leading-relaxed">"{t.text}"</p>
               <p className="font-display font-semibold text-sm">{t.name}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

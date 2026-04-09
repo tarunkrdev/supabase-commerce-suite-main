@@ -68,17 +68,17 @@ const Index = () => {
         }} />
 
         {/* Products Section */}
-        <section id="products" className="py-12 md:py-16">
+        <section id="products" className="py-8 md:py-16">
           <div className="container">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-2">
+            <div className="text-center mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-4xl font-display font-bold mb-2">
                 Our <span className="gradient-cyan-text">Products</span>
               </h2>
-              <p className="text-muted-foreground">Premium quality, discreet delivery</p>
+              <p className="text-sm md:text-base text-muted-foreground">Premium quality, discreet delivery</p>
             </div>
 
             {/* Filters */}
-            <div className="flex flex-col md:flex-row gap-3 mb-8">
+            <div className="flex flex-col md:flex-row gap-2 md:gap-3 mb-6 md:mb-8">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
@@ -86,37 +86,39 @@ const Index = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search products..."
-                  className="w-full bg-secondary border border-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full bg-secondary border border-border rounded-lg pl-10 pr-4 py-2 md:py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
                 />
               </div>
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-full md:w-[180px] bg-secondary border-border">
-                  <SlidersHorizontal className="w-4 h-4 mr-2" />
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  {categories.map(c => (
-                    <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-full md:w-[160px] bg-secondary border-border">
-                  <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="newest">Newest</SelectItem>
-                  <SelectItem value="price-low">Price: Low to High</SelectItem>
-                  <SelectItem value="price-high">Price: High to Low</SelectItem>
-                  <SelectItem value="name">Name</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="flex gap-2">
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger className="flex-1 md:w-[180px] bg-secondary border-border text-xs md:text-sm">
+                    <SlidersHorizontal className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-2 shrink-0" />
+                    <SelectValue placeholder="Category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Categories</SelectItem>
+                    {categories.map(c => (
+                      <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="flex-1 md:w-[160px] bg-secondary border-border text-xs md:text-sm">
+                    <SelectValue placeholder="Sort by" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="newest">Newest</SelectItem>
+                    <SelectItem value="price-low">Price: Low→High</SelectItem>
+                    <SelectItem value="price-high">Price: High→Low</SelectItem>
+                    <SelectItem value="name">Name</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             {/* Grid */}
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
                 {filteredProducts.map(product => (
                   <ProductCard key={product.id} product={product} />
                 ))}
@@ -133,13 +135,13 @@ const Index = () => {
         <PromoBanner />
         <Testimonials />
         <BrandStory />
-        <section className="py-12 bg-secondary/30">
+        <section className="py-8 md:py-12 bg-secondary/30">
           <div className="container text-center">
-            <h2 className="text-2xl font-display font-bold mb-4">Wellness Insights & Tips</h2>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+            <h2 className="text-xl md:text-2xl font-display font-bold mb-3 md:mb-4">Wellness Insights & Tips</h2>
+            <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6 max-w-md mx-auto">
               Explore our latest articles on intimacy, wellness, and self-care.
             </p>
-            <Link to="/blog" className="inline-flex items-center justify-center rounded-lg gradient-cyan px-8 py-3 text-sm font-semibold text-primary-foreground glow-cyan-sm transition-all hover:opacity-90">
+            <Link to="/blog" className="inline-flex items-center justify-center rounded-lg gradient-cyan px-6 md:px-8 py-2.5 md:py-3 text-sm font-semibold text-primary-foreground glow-cyan-sm transition-all hover:opacity-90">
               Read our blog
             </Link>
           </div>

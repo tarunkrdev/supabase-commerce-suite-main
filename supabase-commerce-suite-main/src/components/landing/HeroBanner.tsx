@@ -34,7 +34,7 @@ const HeroBanner = ({ banners }: HeroBannerProps) => {
   const item = items[current];
 
   return (
-    <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+    <section className="relative h-[50vh] md:h-[70vh] min-h-[320px] md:min-h-[500px] overflow-hidden">
       {/* Background */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -46,7 +46,7 @@ const HeroBanner = ({ banners }: HeroBannerProps) => {
           className="absolute inset-0"
         >
           {item.image ? (
-            <img src={item.image} alt="" className="w-full h-full object-cover" />
+            <img src={item.image} alt="" className="w-full h-full object-cover" loading="eager" />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-secondary via-background to-muted" />
           )}
@@ -58,25 +58,25 @@ const HeroBanner = ({ banners }: HeroBannerProps) => {
       <div className="absolute inset-0 radial-glow opacity-30" />
 
       {/* Content */}
-      <div className="relative z-10 container h-full flex items-center">
+      <div className="relative z-10 container h-full flex items-center px-4 md:px-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.4 }}
             className="max-w-xl"
           >
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-3 md:mb-4">
               {(item as Banner).title || 'Premium Wellness'}
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base md:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed">
               {(item as Banner).subtitle || 'Discover products designed for your pleasure & wellness'}
             </p>
             <Button
               size="lg"
-              className="gradient-cyan text-primary-foreground font-semibold text-lg px-8 py-6 glow-cyan-sm hover:opacity-90 transition-opacity"
+              className="gradient-cyan text-primary-foreground font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 glow-cyan-sm hover:opacity-90 transition-opacity"
               onClick={() => {
                 const el = document.querySelector('#products');
                 el?.scrollIntoView({ behavior: 'smooth' });
@@ -93,23 +93,23 @@ const HeroBanner = ({ banners }: HeroBannerProps) => {
         <>
           <button
             onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full glass flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-10 md:h-10 rounded-full glass flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
           </button>
           <button
             onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full glass flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-10 md:h-10 rounded-full glass flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
           </button>
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
             {items.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${
-                  i === current ? 'bg-primary w-8' : 'bg-foreground/30'
+                className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all ${
+                  i === current ? 'bg-primary w-6 md:w-8' : 'bg-foreground/30'
                 }`}
               />
             ))}
