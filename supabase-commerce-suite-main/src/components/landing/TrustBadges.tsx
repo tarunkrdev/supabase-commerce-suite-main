@@ -18,8 +18,8 @@ const TrustBadges = () => {
               className="glass rounded-xl p-3 md:p-5 text-center group hover:glow-cyan-sm transition-shadow"
             >
               <badge.icon className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-2 md:mb-3 group-hover:scale-110 transition-transform" />
-              <h3 className="font-display text-xs md:text-base font-semibold mb-0.5 md:mb-1">{badge.label}</h3>
-              <p className="text-[10px] md:text-xs text-muted-foreground leading-tight">{badge.desc}</p>
+              <h2 className="font-display text-xs md:text-base font-semibold mb-0.5 md:mb-1">{badge.label}</h2>
+              <p className="text-xs text-muted-foreground leading-tight">{badge.desc}</p>
             </div>
           ))}
         </div>

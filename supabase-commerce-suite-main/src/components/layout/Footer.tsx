@@ -28,7 +28,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-sm md:text-lg font-semibold mb-3 md:mb-4 text-foreground">Quick Links</h4>
+            <h3 className="font-display text-sm md:text-lg font-semibold mb-3 md:mb-4 text-foreground">Quick Links</h3>
             <div className="flex flex-col gap-1.5 md:gap-2">
               {[
                 { label: 'Shop', href: '/#products' },
@@ -45,7 +45,7 @@ const Footer = () => {
 
           {/* Support */}
           <div>
-            <h4 className="font-display text-sm md:text-lg font-semibold mb-3 md:mb-4 text-foreground">Support</h4>
+            <h3 className="font-display text-sm md:text-lg font-semibold mb-3 md:mb-4 text-foreground">Support</h3>
             <div className="flex flex-col gap-1.5 md:gap-2">
               {['Shipping & Delivery', 'Returns & Refunds', 'Privacy Policy', 'Terms of Service'].map(label => (
                 <span key={label} className="text-xs md:text-sm text-muted-foreground cursor-pointer hover:text-primary transition-colors">
@@ -57,7 +57,7 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div className="col-span-2 lg:col-span-1">
-            <h4 className="font-display text-sm md:text-lg font-semibold mb-3 md:mb-4 text-foreground">Stay Updated</h4>
+            <h3 className="font-display text-sm md:text-lg font-semibold mb-3 md:mb-4 text-foreground">Stay Updated</h3>
             <p className="text-xs md:text-sm text-muted-foreground mb-2 md:mb-3">Get exclusive offers & new arrivals.</p>
             <div className="flex gap-2">
               <input
@@ -75,7 +75,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-8 md:mt-10 pt-4 md:pt-6 text-center">
-          <p className="text-[10px] md:text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} OPS Retail. All rights reserved. Billing appears as "OPS Retail".
           </p>
         </div>

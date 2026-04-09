@@ -93,7 +93,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="text-muted-foreground hover:text-foreground w-9 h-9 md:w-10 md:h-10"
+              className="text-muted-foreground hover:text-foreground w-12 h-12 md:w-10 md:h-10"
               onClick={() => setSearchOpen(!searchOpen)}
             >
               <Search className="w-4 h-4 md:w-5 md:h-5" />
@@ -101,7 +101,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="text-muted-foreground hover:text-foreground w-9 h-9 md:w-10 md:h-10"
+              className="text-muted-foreground hover:text-foreground w-12 h-12 md:w-10 md:h-10"
               onClick={() => navigate('/wishlist')}
             >
               <Heart className="w-4 h-4 md:w-5 md:h-5" />
@@ -109,7 +109,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="text-muted-foreground hover:text-foreground relative w-9 h-9 md:w-10 md:h-10"
+              className="text-muted-foreground hover:text-foreground relative w-12 h-12 md:w-10 md:h-10"
               onClick={() => navigate('/cart')}
             >
               <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" />
@@ -122,7 +122,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="text-muted-foreground hover:text-foreground w-9 h-9 md:w-10 md:h-10"
+              className="text-muted-foreground hover:text-foreground w-12 h-12 md:w-10 md:h-10"
               onClick={() => navigate(user ? '/dashboard' : '/auth')}
             >
               <User className="w-4 h-4 md:w-5 md:h-5" />
@@ -136,7 +136,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden text-muted-foreground w-9 h-9"
+              className="lg:hidden text-muted-foreground w-12 h-12"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >

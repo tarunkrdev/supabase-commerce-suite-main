@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { getOptimizedImageUrl } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -46,7 +47,16 @@ const HeroBanner = ({ banners }: HeroBannerProps) => {
           className="absolute inset-0"
         >
           {item.image ? (
-            <img src={item.image} alt="" className="w-full h-full object-cover" loading="eager" />
+            <img 
+              src={getOptimizedImageUrl(item.image)} 
+              srcSet={`${item.image} 800w, ${item.image} 1600w`}
+              sizes="100vw"
+              alt={item.title || 'Wellness Banner'} 
+              width={1600}
+              height={900}
+              className="w-full h-full object-cover" 
+              loading="eager" 
+            />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-secondary via-background to-muted" />
           )}
@@ -68,9 +78,9 @@ const HeroBanner = ({ banners }: HeroBannerProps) => {
             transition={{ duration: 0.4 }}
             className="max-w-xl"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-3 md:mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-3 md:mb-4">
               {(item as Banner).title || 'Premium Wellness'}
-            </h2>
+            </h1>
             <p className="text-base md:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed">
               {(item as Banner).subtitle || 'Discover products designed for your pleasure & wellness'}
             </p>
@@ -93,13 +103,13 @@ const HeroBanner = ({ banners }: HeroBannerProps) => {
         <>
           <button
             onClick={prev}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-10 md:h-10 rounded-full glass flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-10 md:h-10 rounded-full glass flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors"
           >
             <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
           </button>
           <button
             onClick={next}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 md:w-10 md:h-10 rounded-full glass flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-10 md:h-10 rounded-full glass flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors"
           >
             <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
           </button>

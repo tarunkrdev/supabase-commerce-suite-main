@@ -1,225 +1,93 @@
-// src/components/StructuredData.tsx
-// ===== STRUCTURED DATA COMPONENTS - JSON-LD SCHEMA.ORG MARKUP =====
-// Provides rich snippets for search engines (Products, Breadcrumbs, Articles, Organization)
+import React from 'react';
 
-import { Helmet } from 'react-helmet-async';
-
-// ============================================
-// PRODUCT SCHEMA
-// ============================================
-interface ProductStructuredDataProps {
-  product: {
-    name: string;
-    description?: string;
-    image: string;
-    sku?: string;
-    price: number;
-    currency?: string;
-    availability?: 'InStock' | 'OutOfStock' | 'PreOrder';
-    brand?: string;
-    url?: string;
-  };
-}
-
-export const ProductStructuredData = ({ product }: ProductStructuredDataProps) => {
-  const {
-    name,
-    description = '',
-    image,
-    sku = '',
-    price,
-    currency = 'INR',
-    availability = 'InStock',
-    brand = 'oops!Pleasured',
-    url = typeof window !== 'undefined' ? window.location.href : '',
-  } = product;
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name,
-    description,
-    image,
-    sku,
-    brand: {
-      '@type': 'Brand',
-      name: brand,
+export const OrganizationStructuredData = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "oops!Pleasured",
+    "url": "https://oopsipleasured.in",
+    "logo": "https://oopsipleasured.in/favicon.ico",
+    "description": "Premium adult wellness products with 100% discreet packaging, private billing, and free shipping above ₹999.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IN"
     },
-    offers: {
-      '@type': 'Offer',
-      price,
-      priceCurrency: currency,
-      availability: `https://schema.org/${availability}`,
-      url,
-    },
+    "sameAs": [
+      "https://oopsipleasured.in"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Hindi"]
+    }
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
   );
 };
 
-// ============================================
-// BREADCRUMB LIST SCHEMA
-// ============================================
-interface BreadcrumbItem {
-  name: string;
-  url: string;
-}
-
-interface BreadcrumbStructuredDataProps {
-  items: BreadcrumbItem[];
-}
-
-export const BreadcrumbStructuredData = ({ items }: BreadcrumbStructuredDataProps) => {
-  if (!items || items.length === 0) return null;
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: item.url,
-    })),
-  };
-
-  return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
-  );
-};
-
-// ============================================
-// ARTICLE SCHEMA (for Blog Posts)
-// ============================================
-interface ArticleStructuredDataProps {
-  article: {
-    headline: string;
-    description?: string;
-    image: string;
-    datePublished: string; // ISO 8601 format
-    dateModified?: string;
-    authorName?: string;
-    publisherName?: string;
-    publisherLogo?: string;
-    url?: string;
-  };
-}
-
-export const ArticleStructuredData = ({ article }: ArticleStructuredDataProps) => {
-  const {
-    headline,
-    description = '',
-    image,
-    datePublished,
-    dateModified,
-    authorName = 'oops!Pleasured Team',
-    publisherName = 'oops!Pleasured',
-    publisherLogo = '/logo.png',
-    url = typeof window !== 'undefined' ? window.location.href : '',
-  } = article;
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline,
-    description,
-    image,
-    datePublished,
-    dateModified: dateModified || datePublished,
-    author: {
-      '@type': 'Person',
-      name: authorName,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: publisherName,
-      logo: {
-        '@type': 'ImageObject',
-        url: publisherLogo,
+export const WebSiteStructuredData = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "oops!Pleasured",
+    "url": typeof window !== 'undefined' ? window.location.origin : 'https://oopsipleasured.in',
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${typeof window !== 'undefined' ? window.location.origin : 'https://oopsipleasured.in'}/search?q={search_term_string}`
       },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': url,
-    },
+      "query-input": "required name=search_term_string"
+    }
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
   );
 };
 
-// ============================================
-// ORGANIZATION SCHEMA (Global Brand Info)
-// ============================================
-interface OrganizationStructuredDataProps {
-  name?: string;
-  url?: string;
-  logo?: string;
-  sameAs?: string[]; // Social media URLs
-}
-
-export const OrganizationStructuredData = ({
-  name = 'oops!Pleasured',
-  url = typeof window !== 'undefined' ? window.location.origin : '',
-  logo = '/logo.png',
-  sameAs = [],
-}: OrganizationStructuredDataProps) => {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name,
-    url,
-    logo,
-    sameAs,
+export const ProductStructuredData = ({ product }: { product: { name: string, description: string, image: string, price: number, availability: 'InStock' | 'OutOfStock' } }) => {
+  const schema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.image,
+    "description": product.description,
+    "brand": {
+      "@type": "Brand",
+      "name": "oops!Pleasured"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": typeof window !== 'undefined' ? window.location.href : '',
+      "priceCurrency": "INR",
+      "price": product.price,
+      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": `https://schema.org/${product.availability}`
+    }
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
   );
 };
 
-// ============================================
-// FAQ SCHEMA (for FAQ sections)
-// ============================================
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-interface FAQStructuredDataProps {
-  faqs: FAQItem[];
-}
-
-export const FAQStructuredData = ({ faqs }: FAQStructuredDataProps) => {
-  if (!faqs || faqs.length === 0) return null;
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
+export const BreadcrumbStructuredData = ({ items }: { items: { name: string, url: string }[] }) => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-    </Helmet>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
   );
 };

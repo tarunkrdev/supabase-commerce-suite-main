@@ -23,7 +23,7 @@ const CategoryDiscovery = ({ categories, onCategoryClick }: CategoryDiscoveryPro
             <button
               key={cat.id}
               onClick={() => onCategoryClick(cat.id)}
-              className="flex-shrink-0 glass rounded-xl px-5 py-3 md:px-6 md:py-4 text-center hover:glow-cyan-sm hover:border-primary/30 transition-all min-w-[120px] md:min-w-[140px] active:scale-95"
+              className="flex-shrink-0 glass rounded-xl px-5 py-3 md:px-6 md:py-4 text-center hover:glow-cyan-sm hover:border-primary/30 transition-all min-w-[120px] md:min-w-[140px] min-h-[48px] active:scale-95"
             >
               <span className="font-display text-sm md:text-base font-semibold">{cat.name}</span>
             </button>

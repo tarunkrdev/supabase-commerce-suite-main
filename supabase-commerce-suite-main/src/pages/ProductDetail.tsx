@@ -17,6 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 import { Star } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { ProductStructuredData, BreadcrumbStructuredData } from '@/components/StructuredData';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -97,6 +98,18 @@ const ProductDetail = () => {
       <Helmet>
         <title>{product.name} | oops! Pleasured</title>
       </Helmet>
+      <ProductStructuredData product={{
+        name: product.name,
+        description: product.description,
+        image: product.images?.[0] || '',
+        price: product.price,
+        availability: product.availability === 'available' ? 'InStock' : 'OutOfStock'
+      }} />
+      <BreadcrumbStructuredData items={[
+        { name: 'Home', url: typeof window !== 'undefined' ? window.location.origin : 'https://oopsipleasured.in' },
+        { name: 'Products', url: `${typeof window !== 'undefined' ? window.location.origin : 'https://oopsipleasured.in'}/#products` },
+        { name: product.name, url: typeof window !== 'undefined' ? window.location.href : '' }
+      ]} />
       <div className="min-h-screen bg-background">
         <AnnouncementBar /><Navbar />
 
@@ -248,7 +261,7 @@ const ProductDetail = () => {
                   <div className="flex items-center gap-3 mb-2">
                     <span className="font-display font-semibold text-sm">{r.reviewer_name}</span>
                     {r.is_verified_purchase && (
-                      <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded-full">Verified</span>
+                      <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded-full">Verified</span>
                     )}
                   </div>
                   <div className="flex gap-0.5 mb-2">

@@ -17,6 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 // ===== SEO CHANGE 1/2: Import the SEO component =====
 import { SEO } from '@/components/SEO';
+import { WebSiteStructuredData, BreadcrumbStructuredData, OrganizationStructuredData } from '@/components/StructuredData';
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -50,14 +51,18 @@ const Index = () => {
       {/* ===== SEO CHANGE 2/2: Add SEO component with homepage meta ===== */}
       <SEO
         title="Premium Intimate Wellness Products in India"
-        description="Discreet delivery, premium quality intimate wellness products. Explore our curated collection for better self-care and confidence."
-        canonicalUrl="https://yourdomain.com" // Replace with your actual domain
+        description="Shop premium adult wellness products. 100% discreet packaging, private billing, free shipping above ₹999."
+        canonicalUrl="https://oopsipleasured.in/" 
         // ogImage="/home-og.jpg" (optional)
       />
+      <WebSiteStructuredData />
+      <OrganizationStructuredData />
+      <BreadcrumbStructuredData items={[
+        { name: 'Home', url: typeof window !== 'undefined' ? window.location.origin : 'https://oopsipleasured.in' }
+      ]} />
 
       {/* All existing JSX remains completely unchanged below this line */}
       <div className="min-h-screen bg-background">
-        <h1 className="sr-only">Intimate Wellness Products in India</h1>
         <AnnouncementBar />
         <Navbar />
         <HeroBanner banners={banners} />
