@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin
-Disallow: /admin/login
-Disallow: /dashboard
-
-Sitemap: https://oopsipleasured.in/sitemap.xml
